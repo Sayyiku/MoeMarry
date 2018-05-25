@@ -1,0 +1,36 @@
+{
+    "name": "moemarry",
+    "version": "0.1.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {},
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/edisonlee55/MoeMarry.git"
+    },
+    "keywords": [
+      "Moe",
+      "Marry",
+      "MoeMarry"
+    ],
+    "author": {
+      "name": "Edison Lee",
+      "email": "edisonlee@edisonlee55.com",
+      "url": "https://www.edisonlee55.com"
+    },
+    "contributors": [
+      {
+        "name": "Edison Lee",
+        "email": "edisonlee@edisonlee55.com",
+        "url": "https://www.edisonlee55.com"
+      }
+    ],
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/edisonlee55/MoeMarry/issues",
+      "email": "edisonlee@edisonlee55.com"
+    },
+    "homepage": "https://moemarry.edisonlee55.com",
+    "dependencies": {},
+    "devDependencies": {}
+  }
