@@ -207,6 +207,10 @@
     <script type="text/javascript">
         // Animations initialization
         new WOW().init();
+        
+        setInterval(function () {
+            $('.scrolling-navbar').addClass('top-nav-collapse');
+        }, 100);
 
         window.addEventListener('load', function () {
 
