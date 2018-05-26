@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <link rel="icon" href="https://cdn.edisonlee55.com/edisonlee55/resources/photo/cb3ad2f4-13f3-413e-9b53-83f6d6d590a2.png">
-    <title>Record Marriage|MoeMarry</title>
+    <title>登記結婚|MoeMarry</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
         crossorigin="anonymous">
@@ -74,18 +74,18 @@
                 <!-- Left -->
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
+                        <a class="nav-link" href="index.html">首頁</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Record Marriage
+                        <a class="nav-link" href="#">登記結婚
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="search.html">Search Record</a>
+                        <a class="nav-link" href="search.html">搜尋結婚紀錄</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="edit.html">Edit Record</a>
+                        <a class="nav-link" href="edit.html">修改結婚紀錄</a>
                     </li>
                 </ul>
 
@@ -128,35 +128,35 @@
 
                     <!-- Material form register -->
                     <form>
-                        <p class="h4 text-center py-4">Record Marriage</p>
+                        <p class="h4 text-center py-4">登記結婚</p>
 
                         <!-- Material input text -->
                         <div class="md-form">
                             <i class="material-icons prefix grey-text">face</i>
                             <input type="text" id="partner1" class="form-control">
-                            <label for="partner1" class="font-weight-light">Partner 1 Name</label>
+                            <label for="partner1" class="font-weight-light">配偶 1 姓名</label>
                         </div>
 
                         <!-- Material input text -->
                         <div class="md-form">
                             <i class="material-icons prefix grey-text">face</i>
                             <input type="text" id="partner2" class="form-control">
-                            <label for="partner2" class="font-weight-light">Partner 2 Name</label>
+                            <label for="partner2" class="font-weight-light">配偶 2 姓名 (二次元角色)</label>
                         </div>
 
                         <!-- Material input email -->
                         <div class="md-form">
                             <i class="material-icons prefix grey-text">date_range</i>
                             <input type="date" id="marriageDate" class="form-control">
-                            <label for="marriageDate" class="font-weight-light active">Marriage Date</label>
+                            <label for="marriageDate" class="font-weight-light active">結婚日期</label>
                         </div>
 
                         <div class="text-center py-4 mt-3">
-                            <button class="btn btn-blue" id="recordMarriage" type="submit">紀錄 📝</button>
+                            <button class="btn btn-blue" id="recordMarriage" type="submit">送出結婚登記 📝</button>
                         </div>
                     </form>
                     <!-- Material form register -->
-                    <p id="TxID"></p>
+                    <p id="TxID" style="text-align:center;"></p>
                 </div>
                 <!-- Card body -->
 
@@ -185,6 +185,8 @@
         <!--Copyright-->
         <div class="footer-copyright py-3">
             Copyright © 2018 Edison Lee
+            <br>
+            <a href="https://www.edisonlee55.com/policies/privacy/zh-TW.html">隱私權政策</a>
         </div>
         <!--/.Copyright-->
 
@@ -203,105 +205,15 @@
     <!-- web3 -->
     <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
     <script src="https://cdn.edisonlee55.com/lib/js/browser-solc.min.js" type="text/javascript"></script>
+    <script src="js/record.min.js" type="text/javascript"></script>
     <!-- Initializations -->
     <script type="text/javascript">
         // Animations initialization
         new WOW().init();
-        
+
         setInterval(function () {
             $('.scrolling-navbar').addClass('top-nav-collapse');
         }, 100);
-
-        window.addEventListener('load', function () {
-
-            // Checking if Web3 has been injected by the browser (Mist/MetaMask)
-            if (typeof web3 !== 'undefined') {
-                web3 = new Web3(web3.currentProvider);
-            } else {
-                // set the provider you want from Web3.providers
-                web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
-            }
-
-            if (web3.currentProvider.isMetaMask) {
-                $("#onlineStatus").css("background", "#80c97e");
-                $("#statusText").text('Web3: MetaMask connected!');
-                web3.version.getNetwork((err, netId) => {
-                    switch (netId) {
-                        case "1":
-                            $("#netStatus").text('Network: mainnet');
-                            break;
-                        case "2":
-                            $("#netStatus").text('Network: deprecated Morden test network');
-                            break;
-                        case "3":
-                            $("#netStatus").text('Network: ropsten test network');
-                            break;
-                        case "4":
-                            $("#netStatus").text('Network: Rinkeby test network');
-                            break;
-                        case "42":
-                            $("#netStatus").text('Network: Kovan test network');
-                            break;
-                        default:
-                            $("#netStatus").text('Network: Unknown');
-                    }
-                });
-                var account = web3.eth.accounts[0];
-                $("#address").text("Address: " + account);
-                var accountInterval = setInterval(function () {
-                    if (web3.eth.accounts[0] !== account) {
-                        account = web3.eth.accounts[0];
-                        $("#address").text("Address: " + account);
-                    }
-                }, 100);
-            } else {
-                $("#statusText").text('Web3: MetaMask not connected!');
-                $("#formBody").html('<h1 style="text-align:center;">未偵測到 MetaMask!</h1><p style="text-align:center">請點選<a href="https://metamask.io/">本連結</a>到 MetaMask 官網下載並建立你的錢包!');
-            }
-        });
-
-        function recordMarriage() {
-            $("#partner1").removeClass("invalid");
-            $("#partner2").removeClass("invalid");
-            $("#marriageDate").removeClass("invalid");
-            var partner1 = $("#partner1").val();
-            var partner2 = $("#partner2").val();
-            var marriageDate = $("#marriageDate").val();
-            if (partner1 != "" && partner2 != "" && marriageDate != "") {
-                var dateTime = new Date(marriageDate).getTime();
-                var timestamp = Math.floor(dateTime / 1000);
-
-                BrowserSolc.loadVersion("soljson-v0.4.24+commit.e67f0147.js", function (compiler) {
-                    source = `pragma solidity ^0.4.24; contract owned { address public owner; constructor() public { owner = msg.sender; } modifier onlyOwner { require(msg.sender == owner); _; } function transferOwnership(address newOwner) onlyOwner public { owner = newOwner; } } contract Marriage is owned { bytes32 public partner1; bytes32 public partner2; uint256 public marriageDate; bytes32 public marriageStatus; bytes public imageHash; bytes public marriageProofDoc; constructor() public { createMarriage(); } function createMarriage() onlyOwner public { partner1 = "${partner1}"; partner2 = "${partner2}"; marriageDate = ${timestamp}; setStatus("Married"); bytes32 name = "Marriage Contract Creation"; majorEventFunc(marriageDate, name, "We got married!"); } function setStatus(bytes32 status) onlyOwner public { marriageStatus = status; majorEventFunc(block.timestamp, "Changed Status", status); } function setImage(bytes IPFSImageHash) onlyOwner public { imageHash = IPFSImageHash; majorEventFunc(block.timestamp, "Entered Marriage Image", "Image is in IPFS"); } function marriageProof(bytes IPFSProofHash) onlyOwner public { marriageProofDoc = IPFSProofHash; majorEventFunc(block.timestamp, "Entered Marriage Proof", "Marriage proof in IPFS"); } function majorEventFunc(uint256 eventTimeStamp, bytes32 name, bytes32 description) public { emit MajorEvent(block.timestamp, eventTimeStamp, name, description); } event MajorEvent(uint256 logTimeStamp, uint256 eventTimeStamp, bytes32 indexed name, bytes32 indexed description); function () public { revert(); } }`;
-                    optimize = 1;
-                    result = compiler.compile(source, optimize);
-                    var resultBytecode = (result.contracts[":Marriage"].bytecode);
-                    web3.eth.sendTransaction({ data: resultBytecode }, function (err, transactionHash) {
-                        if (!err)
-                            //TODO: Change etherscan URL　between different network
-                            $("#TxID").html('TxID: <a href="https://etherscan.io/tx/' + transactionHash + '">' + transactionHash + '</a> (請保存此 TxID 以追蹤結婚紀錄)');
-                    });
-                });
-            } else {
-                if (partner1 == "") {
-                    $("#partner1").addClass("invalid");
-                }
-                if (partner2 == "") {
-                    $("#partner2").addClass("invalid");
-                }
-                if (marriageDate == "") {
-                    $("#marriageDate").addClass("invalid");
-                }
-            }
-
-
-        }
-
-        $("#recordMarriage").click(function (event) {
-            recordMarriage();
-            event.preventDefault();
-        })
-
     </script>
 </body>
 
