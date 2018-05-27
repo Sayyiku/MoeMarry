@@ -1,3 +1,10 @@
+/**
+ * MoeMarry - record.js
+ * Copyright (c) 2018 MING-CHIEN LEE
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 window.addEventListener('load', function () {
 
     // Checking if Web3 has been injected by the browser (Mist/MetaMask)
